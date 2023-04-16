@@ -57,19 +57,20 @@ const seeMoreDetails = tool =>{
   // console.log(url)
   const toolDetails =document.getElementById('tool-details');
   toolDetails.innerHTML = `
-  <div class="row g-4">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"> ${tool.description}</h5>
-        <div class ="d-flex justify-content-between">
-          <p>${tool.pricing[0].price} ${tool.pricing[0].plan}</p>
-          <p>${tool.pricing[1].price} ${tool.pricing[1].plan}</p>
-          <p>${tool.pricing[2].price} ${tool.pricing[2].plan}</p>
+  
+  <div class="row g-2 d-flex justify-content-between mx-5 my-5 ">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card h-100 bg-danger-subtle" style="width: 487px;">
+      <div class="card-body px-5 py-5">
+        <h5 class="card-title py-2 fw-bolder "> ${tool.description}</h5>
+        <div class ="d-flex justify-content-between ">
+          <p class ="text-success text-center bg-white mx-2 my-3 px-3 py-3 rounded-3">${tool.pricing[0].price} ${tool.pricing[0].plan}</p>
+          <p class ="text-warning text-center bg-white mx-2 my-3 px-3 py-3 rounded-3">${tool.pricing[1].price} ${tool.pricing[1].plan}</p>
+          <p class ="text-danger  text-center bg-white mx-2 my-3 px-3 py-3 rounded-3">${tool.pricing[2].price} ${tool.pricing[2].plan}</p>
         </div>
-          <div>
+          <div class = "d-flex justify-content-between mt-5">
              <div>
-               <h5>Features</h5>
+               <h5 class="fw-bolder">Features</h5>
                   <ul  class ="text-secondary">
                     <li>${tool.features.feature_name}</li>
                     <li>${tool.features.feature_name}</li>
@@ -77,7 +78,7 @@ const seeMoreDetails = tool =>{
                  </ul>
              </div>
              <div>
-               <h5>Integrations</h5>
+               <h5  class="fw-bolder">Integrations</h5>
                  <ul  class ="text-secondary">
                     <li>${tool.integrations[0]}</li>
                     <li>${tool.integrations[1]}</li>
@@ -89,11 +90,11 @@ const seeMoreDetails = tool =>{
     </div>
   </div>
   <div class="col">
-    <div class="card">
-      <img class="img-fluid" src="${tool.image_link[0]}" class="card-img-top" alt="...">
+    <div class="card h-100 px-5 py-5"  style="width: 487px;">
+      <img class="img-fluid rounded-3 mb-3" src="${tool.image_link[0]}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">${tool.input_output_examples[0].input}</h5>
-        <p class="card-text">${tool.input_output_examples[0].output}</p>
+        <h5 class="card-title fw-bolder">${tool.input_output_examples[0].input}</h5>
+        <p class="card-text text-secondary">${tool.input_output_examples[0].output}</p>
       </div>
     </div>
   </div>
