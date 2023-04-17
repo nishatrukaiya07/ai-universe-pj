@@ -72,9 +72,9 @@ const seeMoreDetails = tool =>{
              <div>
                <h5 class="fw-bolder">Features</h5>
                   <ul  class ="text-secondary">
-                    <li>${tool.features.feature_name}</li>
-                    <li>${tool.features.feature_name}</li>
-                    <li>${tool.features.feature_name}</li>
+                    <li>${tool.features["1"].feature_name}</li>
+                    <li>${tool.features["2"].feature_name}</li>
+                    <li>${tool.features["3"].feature_name}</li>
                  </ul>
              </div>
              <div>
@@ -92,9 +92,10 @@ const seeMoreDetails = tool =>{
   <div class="col">
     <div class="card h-100 px-5 py-5"  style="width: 487px;">
       <img class="img-fluid rounded-3 mb-3" src="${tool.image_link[0]}" class="card-img-top" alt="...">
+      <span class="badge text-bg-danger position-absolute top-0 end-0 mx-5 my-5 px-2 py-2">94% accuracy</span>
       <div class="card-body">
         <h5 class="card-title fw-bolder">${tool.input_output_examples[0].input}</h5>
-        <p class="card-text text-secondary">${tool.input_output_examples[0].output}</p>
+        <p class="card-text text-secondary mt-4">${tool.input_output_examples[0].output}</p>
       </div>
     </div>
   </div>
@@ -103,21 +104,3 @@ const seeMoreDetails = tool =>{
 }
 
 loadData();
-
-// <div class ="d-flex justify-content-between">
-//   <div class ="border">
-//   <h5> </h5>
-  
-//   <div class = "d-flex justify-content-between px-4 mb-4">
-//   <div>
-  
-//   </div>
-//   <div>
-  
-//   </div>
-//   </div>
-//   </div>
-//   <div class ="border container">
-//   <img class="img-fluid" src="${tool.image_link[0]}" alt="...">
-//   </div>
-//   </div>
