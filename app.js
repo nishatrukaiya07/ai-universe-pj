@@ -5,6 +5,7 @@ const loadData = async() =>{
   const data = await res.json();
   allData = data.data.tools;
   displayData(data.data.tools);
+  toggleSpinner(false);
 }
 
 const displayData = tools =>{
@@ -43,7 +44,6 @@ tools.forEach(tool =>{
   `
 toolsContainer.appendChild(toolDiv);
 })
-
 }
 
 const fetchShowDetails = id => {
@@ -102,5 +102,13 @@ const seeMoreDetails = tool =>{
 </div>
   `
 }
-
+const toggleSpinner = isLoading => {
+  const loaderSection = document.getElementById('loader');
+  if(isLoading){
+    loaderSection.classList.remove('d-none')
+  }
+  else {
+    loaderSection.classList.add('d-none')
+  }
+}
 loadData();
