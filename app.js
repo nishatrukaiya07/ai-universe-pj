@@ -1,17 +1,19 @@
 let allData =[]
-const loadData = async() =>{
+const loadData = async(dataLimit) =>{
   const url =`https://openapi.programming-hero.com/api/ai/tools`
   const res = await fetch(url);
   const data = await res.json();
   allData = data.data.tools;
-  displayData(data.data.tools);
+  displayData(data.data.tools ,dataLimit);
   toggleSpinner(false);
 }
 
-const displayData = tools =>{
+const displayData = (tools ,dataLimit) =>{
 // console.log(tools);
 const toolsContainer = document.getElementById('tools-container');
-tools = tools.slice(0,6);
+if(dataLimit && tools.length>6){
+  tools = tools.slice(0,6);
+}
 tools.forEach(tool =>{
   // console.log(tool);
   const toolDiv = document.createElement('div');
@@ -111,4 +113,13 @@ const toggleSpinner = isLoading => {
     loaderSection.classList.add('d-none')
   }
 }
+
+const processSearch =(dataLimit)=>{
+  loadData(dataLimit);
+}
+
+document.getElementById('btn-see-more').addEventListener('click',function(){
+  processSearch();
+})
+
 loadData();
