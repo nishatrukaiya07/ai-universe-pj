@@ -1,4 +1,7 @@
-let allData =[]
+
+let allData =[];
+
+// load data
 const loadData = async(dataLimit) =>{
   const url =`https://openapi.programming-hero.com/api/ai/tools`
   const res = await fetch(url);
@@ -7,12 +10,17 @@ const loadData = async(dataLimit) =>{
   displayData(data.data.tools ,dataLimit);
   toggleSpinner(false);
 }
-
+// show data
 const displayData = (tools ,dataLimit) =>{
 // console.log(tools);
 const toolsContainer = document.getElementById('tools-container');
-if(dataLimit && tools.length>6){
+if(dataLimit == 6 && tools.length>6){
   tools = tools.slice(0,6);
+}
+else{
+  tools = tools.slice(6,12);
+  document.getElementById('btn-see-more').classList.add('d-none');
+
 }
 tools.forEach(tool =>{
   // console.log(tool);
@@ -35,7 +43,7 @@ tools.forEach(tool =>{
       <div class="d-flex justify-content-between">
         <div class="d-flex gap-2 align-items-center">
           <i class="fa-solid fa-calendar-days text-secondary m-0 p-0 "></i>
-          <p class="m-0 p-0 text-secondary">11/01/2022</p>
+          <p class="m-0 p-0 text-secondary">${tool.published_in}</p>
         </div>
         <div class = "bg-danger-subtle opacity-50  text-danger px-3 py-3 rounded-5 mb-4">
           <i class ="fas fa-arrow-right " onclick = "fetchShowDetails('${tool.id}')"data-bs-toggle="modal" data-bs-target="#toolDetailsModal"></i>
@@ -48,6 +56,7 @@ toolsContainer.appendChild(toolDiv);
 })
 }
 
+//  modal 
 const fetchShowDetails = id => {
   let url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
   fetch(url)
@@ -94,7 +103,7 @@ const seeMoreDetails = tool =>{
   <div class="col">
     <div class="card h-100 px-5 py-5"  style="width: 487px;">
       <img class="img-fluid rounded-3 mb-3" src="${tool.image_link[0]}" class="card-img-top" alt="...">
-      <span class="badge text-bg-danger position-absolute top-0 end-0 mx-5 my-5 px-2 py-2">94% accuracy</span>
+      <span class="badge text-bg-danger position-absolute top-0 end-0 mx-5 my-5 px-2 py-2">${tool.accuracy.score*100}% accuracy</span>
       <div class="card-body">
         <h5 class="card-title fw-bolder">${tool.input_output_examples[0].input}</h5>
         <p class="card-text text-secondary mt-4">${tool.input_output_examples[0].output}</p>
@@ -104,6 +113,8 @@ const seeMoreDetails = tool =>{
 </div>
   `
 }
+
+// spinner 
 const toggleSpinner = isLoading => {
   const loaderSection = document.getElementById('loader');
   if(isLoading){
@@ -113,13 +124,14 @@ const toggleSpinner = isLoading => {
     loaderSection.classList.add('d-none')
   }
 }
+// show 6 cards
 
-const processSearch =(dataLimit)=>{
-  loadData(dataLimit);
-}
+loadData(6);
 
+// show 12 cards
 document.getElementById('btn-see-more').addEventListener('click',function(){
-  processSearch();
+  toggleSpinner(true);
+  loadData(12);
 })
 
-loadData();
+
